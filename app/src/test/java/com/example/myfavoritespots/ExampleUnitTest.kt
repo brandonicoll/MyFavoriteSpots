@@ -1,4 +1,4 @@
-package com.example.myfavouritespots
+package com.example.myfavoritespots
 
 import org.junit.Test
 

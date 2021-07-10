@@ -1,4 +1,4 @@
-package com.example.myfavouritespots
+package com.example.myfavoritespots
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
