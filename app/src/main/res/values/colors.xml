@@ -8,4 +8,9 @@
 
     <!--#009688 • #35a79c • #54b2a9 • #65c3ba • #83d0c9-->
 
+    <color name="primary_text_color">#212121</color>
+    <color name="secondary_text_color">#9AA2AF</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="button_background_color">#63ace5</color>
+
 </resources>
