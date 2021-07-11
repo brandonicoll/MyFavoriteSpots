@@ -8,7 +8,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
 import java.util.*
 
-class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener { //by implemented the onclicklistener extension it requires an onlick fun instead of just doing it in the oncreate
+class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
+    //by implemented the onclicklistener extension it requires an onlick fun instead of just doing it in the oncreate
     @SuppressLint("RestrictedApi")
 
     private val cal = Calendar.getInstance()
@@ -28,13 +29,18 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener { //by i
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-
         }
+
+        et_date.setOnClickListener(this) //the click is handled in the onclick fun
 
     }
 
     override fun onClick(v: View?) {
-
+        when (v!!.id) {
+            R.id.et_date -> {
+                DatePickerDialog(this@AddHappyPlaceActivity, dateSetListener,
+                    cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+            }
+        }
     }
 }
