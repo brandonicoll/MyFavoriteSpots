@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
@@ -29,6 +30,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateDateInView()
         }
 
         et_date.setOnClickListener(this) //the click is handled in the onclick fun
@@ -43,4 +45,12 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+    private fun updateDateInView() {
+        val myFormat = "MM/dd/yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
+
+        et_date.setText(sdf.format(cal.time).toString())
+    }
+
 }
