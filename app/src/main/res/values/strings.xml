@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Favorite Spots</string>
+    <string name="save">SAVE</string>
+    <string name="add_image">ADD IMAGE</string>
+    <string name="location">Location</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
 </resources>
