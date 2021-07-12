@@ -1,10 +1,12 @@
 package com.example.myfavoritespots
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,6 +36,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         et_date.setOnClickListener(this) //the click is handled in the onclick fun
+        tv_add_image.setOnClickListener(this)
 
     }
 
@@ -43,7 +46,23 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 DatePickerDialog(this@AddHappyPlaceActivity, dateSetListener,
                     cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
             }
+            R.id.iv_place_image -> {
+                val pictureDialog = AlertDialog.Builder(this)
+                pictureDialog.setTitle("Select Action")
+                val pictureDialogItems = arrayOf("Select photo from Gallery", "Capture photo from Camera")
+                pictureDialog.setItems(pictureDialogItems) { dialog, which ->
+                    when (which) {
+                        0 -> choosePhotoFromGallery()
+                        1 -> Toast.makeText(this@AddHappyPlaceActivity, "Coming soon...", Toast.LENGTH_SHORT).show() //run other code
+                    }
+                }
+                pictureDialog.show()
+            }
         }
+    }
+
+    private fun choosePhotoFromGallery() {
+        TODO("Not yet implemented")
     }
 
     private fun updateDateInView() {
