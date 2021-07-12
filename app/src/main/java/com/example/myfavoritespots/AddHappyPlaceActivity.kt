@@ -56,7 +56,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 DatePickerDialog(this@AddHappyPlaceActivity, dateSetListener,
                     cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
             }
-            R.id.iv_place_image -> {
+            R.id.tv_add_image -> {
                 val pictureDialog = AlertDialog.Builder(this)
                 pictureDialog.setTitle("Select Action")
                 val pictureDialogItems = arrayOf("Select photo from Gallery", "Capture photo from Camera")
@@ -86,24 +86,23 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
                     showRationalDialogForPermissions()
                 }
-        }).check()
+        }).onSameThread().check()
     }
 
     private fun showRationalDialogForPermissions() {
         AlertDialog.Builder(this)
             .setMessage("You have turned off permissions for this feature. It can be enabled under the application settings.")
             .setPositiveButton("GO TO SETTINGS") { _, _ ->
-            try {
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri = Uri.fromParts("package", packageName, null)
-                intent.data = uri
-                startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
-                e.printStackTrace()
+                try {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val uri = Uri.fromParts("package", packageName, null)
+                    intent.data = uri
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException) {
+                    e.printStackTrace()
+                }
             }
-        }
-            .setNegativeButton("Cancel") { dialog,
-                                           _ ->
+            .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }.show()
     }
