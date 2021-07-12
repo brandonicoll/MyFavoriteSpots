@@ -36,6 +36,7 @@ dependencies {
     apply plugin : "kotlin-android"
     apply plugin : "kotlin-android-extensions"
     implementation('com.google.android.material:material:1.4.0')
+    implementation 'com.karumi:dexter:6.2.3' //dexter library for permissions.
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'

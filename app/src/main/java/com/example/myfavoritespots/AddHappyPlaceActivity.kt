@@ -7,9 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.jar.Manifest
 
 class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     //by implemented the onclicklistener extension it requires an onlick fun instead of just doing it in the oncreate
@@ -62,7 +68,18 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun choosePhotoFromGallery() {
-
+        Dexter.withContext(this).withPermissions(
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CAMERA
+        ).withListener(object: MultiplePermissionsListener {
+            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                /* ... */
+                }
+            override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
+                /* ... */
+                }
+        }).check()
     }
 
     private fun updateDateInView() {
