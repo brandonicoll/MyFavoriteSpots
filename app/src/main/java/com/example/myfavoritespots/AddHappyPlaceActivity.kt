@@ -62,7 +62,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun choosePhotoFromGallery() {
-        TODO("Not yet implemented")
+
     }
 
     private fun updateDateInView() {
