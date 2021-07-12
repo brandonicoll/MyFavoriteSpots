@@ -3,8 +3,12 @@ package com.example.myfavoritespots
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import com.karumi.dexter.Dexter
@@ -70,16 +74,38 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     private fun choosePhotoFromGallery() {
         Dexter.withContext(this).withPermissions(
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            android.Manifest.permission.CAMERA
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         ).withListener(object: MultiplePermissionsListener {
             override fun onPermissionsChecked(report: MultiplePermissionsReport) {
-                /* ... */
+                    if (report.areAllPermissionsGranted()) {
+                        Toast.makeText(this@AddHappyPlaceActivity,
+                            "Storage read/write permission are granted. Now you may select an image from the Gallery",
+                            Toast.LENGTH_SHORT).show()
+                    }
                 }
             override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
-                /* ... */
+                    showRationalDialogForPermissions()
                 }
         }).check()
+    }
+
+    private fun showRationalDialogForPermissions() {
+        AlertDialog.Builder(this)
+            .setMessage("You have turned off permissions for this feature. It can be enabled under the application settings.")
+            .setPositiveButton("GO TO SETTINGS") { _, _ ->
+            try {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", packageName, null)
+                intent.data = uri
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                e.printStackTrace()
+            }
+        }
+            .setNegativeButton("Cancel") { dialog,
+                                           _ ->
+                dialog.dismiss()
+            }.show()
     }
 
     private fun updateDateInView() {
