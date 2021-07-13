@@ -5,27 +5,52 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.net.Uri.parse
+import com.parse.Parse
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Xml.parse
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintAttribute.parse
+import androidx.core.content.res.FontResourcesParserCompat.parse
+import androidx.core.net.MailTo.parse
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
+import okhttp3.HttpUrl.parse
+import okhttp3.MediaType.parse
+import okhttp3.internal.http.StatusLine.parse
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
+import java.net.HttpCookie.parse
+import java.net.URI
 import java.text.SimpleDateFormat
+import java.time.Duration.parse
+import java.time.Instant.parse
+import java.time.LocalDateTime.parse
+import java.time.LocalTime.parse
+import java.time.OffsetDateTime.parse
+import java.time.OffsetTime.parse
 import java.util.*
+import java.util.Date.parse
+import java.util.Locale.LanguageRange.parse
 import java.util.jar.Manifest
+import java.util.logging.Level.parse
 
 class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     //by implemented the onclicklistener extension it requires an onlick fun instead of just doing it in the oncreate
@@ -166,6 +191,27 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
 
         et_date.setText(sdf.format(cal.time).toString())
+    }
+
+    private fun saveImageToInternalStorage(bitmap: Bitmap): Uri? {
+        val wrapper = ContextWrapper(applicationContext)
+        var file = wrapper.getDir(IMAGE_DIRECTORY, MODE_PRIVATE)
+        file = File(file, "${UUID.randomUUID()}.jpg") //gives the file a random id
+
+        try {
+            val stream : OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            stream.flush()
+            stream.close()
+        }
+        catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return Uri.parse(file.absolutePath)
+    }
+
+    companion object {
+        private const val IMAGE_DIRECTORY = "HappyPlacesImages"
     }
 
 }
