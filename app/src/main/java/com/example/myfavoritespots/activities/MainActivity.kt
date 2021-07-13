@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        getHappyPlacesListFromLocalDatabase()
+
     }
 
     private fun getHappyPlacesListFromLocalDatabase() {
