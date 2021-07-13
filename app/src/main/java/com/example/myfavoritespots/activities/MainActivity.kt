@@ -26,6 +26,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        getHappyPlacesListFromLocalDatabase()
+    }
+
     private fun getHappyPlacesListFromLocalDatabase() {
         val dbHandler = DatabaseHandler(this)
         val getHappyPlaceList = dbHandler.getHappyPlacesList() //gets happy place list from DatabaseHandler.kt get class
