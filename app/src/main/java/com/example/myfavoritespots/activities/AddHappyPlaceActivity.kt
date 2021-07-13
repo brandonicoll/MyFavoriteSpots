@@ -37,6 +37,9 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     private val cal = Calendar.getInstance()
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener //dont have to initialize it now
+    private var saveImageToInternalStorage : Uri? = null
+    private var mLatitude : Double = 0.0
+    private var mLongitude : Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +60,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
         et_date.setOnClickListener(this) //the click is handled in the onclick fun
         tv_add_image.setOnClickListener(this)
+        btn_save.setOnClickListener(this)
 
     }
 
@@ -78,6 +82,9 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 pictureDialog.show()
             }
+            R.id.btn_save -> {
+                //save happy place to database
+            }
         }
     }
 
@@ -90,7 +97,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 val contentUri=data.data
                 try{
                     val selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentUri)
-                    val saveImageToInternalStorage = saveImageToInternalStorage(selectedImageBitmap)
+                    saveImageToInternalStorage = saveImageToInternalStorage(selectedImageBitmap)
                     Log.e("Saved Image:", "Path :: $saveImageToInternalStorage")
                     iv_place_image.setImageBitmap(selectedImageBitmap)
                     //iv_place_image.selectedImageImageView.setImageURI(contentUri)
@@ -110,7 +117,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             val data: Intent? = result.data
 
             val thumbNail : Bitmap = data!!.extras?.get("data") as Bitmap
-            val saveImageToInternalStorage = saveImageToInternalStorage(thumbNail)
+            saveImageToInternalStorage = saveImageToInternalStorage(thumbNail)
             Log.e("Saved Image:", "Path :: $saveImageToInternalStorage")
             iv_place_image.setImageBitmap(thumbNail)
         }
