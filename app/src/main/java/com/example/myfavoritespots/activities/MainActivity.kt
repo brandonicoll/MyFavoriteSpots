@@ -1,8 +1,9 @@
-package com.example.myfavoritespots
+package com.example.myfavoritespots.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.myfavoritespots.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
