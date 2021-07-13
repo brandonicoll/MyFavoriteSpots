@@ -69,7 +69,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 pictureDialog.setItems(pictureDialogItems) { dialog, which ->
                     when (which) {
                         0 -> choosePhotoFromGallery()
-                        1 -> Toast.makeText(this@AddHappyPlaceActivity, "Coming soon...", Toast.LENGTH_SHORT).show() //run other code
+                        1 -> takePhotoFromCamera()
                     }
                 }
                 pictureDialog.show()
@@ -77,7 +77,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    var resultLauncherGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             // There are no request codes
             val data: Intent? = result.data
@@ -98,6 +98,34 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    var resultLauncherCamera = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // There are no request codes
+            val data: Intent? = result.data
+
+            val thumbNail : Bitmap = data!!.extras?.get("data") as Bitmap
+            iv_place_image.setImageBitmap(thumbNail)
+        }
+    }
+
+    private fun takePhotoFromCamera() {
+        Dexter.withContext(this).withPermissions(
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CAMERA
+        ).withListener(object: MultiplePermissionsListener {
+            override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                if (report!!.areAllPermissionsGranted()) {
+                    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    resultLauncherCamera.launch(cameraIntent)
+                }
+            }
+            override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
+                showRationalDialogForPermissions()
+            }
+        }).onSameThread().check()
+    }
+
     private fun choosePhotoFromGallery() {
         Dexter.withContext(this).withPermissions(
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -106,7 +134,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                     if (report!!.areAllPermissionsGranted()) {
                         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                        resultLauncher.launch(galleryIntent)
+                        resultLauncherGallery.launch(galleryIntent)
                     }
                 }
             override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
