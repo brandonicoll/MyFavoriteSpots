@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.util.Xml.parse
 import android.view.View
 import android.widget.Toast
@@ -111,6 +112,8 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 val contentUri=data.data
                 try{
                     val selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentUri)
+                    val saveImageToInternalStorage = saveImageToInternalStorage(selectedImageBitmap)
+                    Log.e("Saved Image:", "Path :: $saveImageToInternalStorage")
                     iv_place_image.setImageBitmap(selectedImageBitmap)
                     //iv_place_image.selectedImageImageView.setImageURI(contentUri)
                 }
@@ -129,6 +132,8 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             val data: Intent? = result.data
 
             val thumbNail : Bitmap = data!!.extras?.get("data") as Bitmap
+            val saveImageToInternalStorage = saveImageToInternalStorage(thumbNail)
+            Log.e("Saved Image:", "Path :: $saveImageToInternalStorage")
             iv_place_image.setImageBitmap(thumbNail)
         }
     }
