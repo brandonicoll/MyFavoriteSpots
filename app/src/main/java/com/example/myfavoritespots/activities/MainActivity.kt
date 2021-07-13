@@ -4,8 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfavoritespots.R
+import com.example.myfavoritespots.adapters.HappyPlacesAdapter
 import com.example.myfavoritespots.database.DatabaseHandler
+import com.example.myfavoritespots.models.HappyPlaceModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,10 +31,22 @@ class MainActivity : AppCompatActivity() {
         val getHappyPlaceList = dbHandler.getHappyPlacesList() //gets happy place list from DatabaseHandler.kt get class
 
         if (getHappyPlaceList.size > 0) { //for testing until i add a recycler view
-            for (i in getHappyPlaceList) {
-                Log.e("Title", i.title)
-            }
+            rv_happy_places_list.visibility = View.VISIBLE
+            tv_no_records_available.visibility = View.GONE
+            setupHappyPlacesRecyclerView(getHappyPlaceList)
         }
+        else {
+            rv_happy_places_list.visibility = View.GONE
+            tv_no_records_available.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setupHappyPlacesRecyclerView(happyPlaceList: ArrayList<HappyPlaceModel>) {
+        rv_happy_places_list.layoutManager = LinearLayoutManager(this)
+        rv_happy_places_list.setHasFixedSize(true)
+
+        val placesAdapter = HappyPlacesAdapter(this, happyPlaceList)
+        rv_happy_places_list.adapter = placesAdapter
     }
 
 }
