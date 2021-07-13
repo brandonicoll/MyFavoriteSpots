@@ -124,7 +124,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
                         val addHappyPlace = dbHandler.addHappyPlace(happyPlaceModel)
 
-                        if (addHappyPlace > 0) {
+                        if (addHappyPlace > 0) { //means there was no error and was actually inserted
                             Toast.makeText(
                                 this,
                                 "The happy place details are inserted successfully.",
