@@ -1,5 +1,6 @@
 package com.example.myfavoritespots.activities
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.myfavoritespots.R
@@ -26,6 +27,10 @@ class HappyPlaceDetailActivity : AppCompatActivity() {
             toolbar_happy_place_details.setNavigationOnClickListener {
                 onBackPressed()
             }
+
+            iv_place_image_detail.setImageURI(Uri.parse(happyPlaceDetailModel.image))
+            tv_description.text = happyPlaceDetailModel.description
+            tv_location.text = happyPlaceDetailModel.location
         }
     }
 }
