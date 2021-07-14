@@ -27,6 +27,12 @@ open class HappyPlacesAdapter(private val context: Context, private var list: Ar
             holder.itemView.iv_place_image.setImageURI(Uri.parse(model.image))
             holder.itemView.tvTitle.text = model.title
             holder.itemView.tvDescription.text = model.description
+
+            holder.itemView.setOnClickListener{ //setup onclick for each element of the recyclerview
+                if (onClickListener != null) {
+                    onClickListener!!.onClick(position, model)
+                }
+            }
         }
     }
 
@@ -41,6 +47,6 @@ open class HappyPlacesAdapter(private val context: Context, private var list: Ar
     }
 
     interface OnClickListener {
-        fun onClick(position: Int, model: HappyPlaceModel) //adapters cant have onclicklisteners so this must be done
+        fun onClick(position: Int, model: HappyPlaceModel) //adapters cant have onclicklisteners so this must be done (override in main or wherever the recycler is)
     }
 }
