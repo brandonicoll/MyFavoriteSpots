@@ -10,6 +10,7 @@ import com.example.myfavoritespots.R
 import com.example.myfavoritespots.adapters.HappyPlacesAdapter
 import com.example.myfavoritespots.database.DatabaseHandler
 import com.example.myfavoritespots.models.HappyPlaceModel
+import kotlinx.android.synthetic.main.activity_add_happy_place.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
