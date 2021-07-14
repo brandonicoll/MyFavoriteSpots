@@ -16,7 +16,7 @@ class HappyPlaceDetailActivity : AppCompatActivity() {
         var happyPlaceDetailModel : HappyPlaceModel? = null
 
         if (intent.hasExtra(MainActivity.EXTRA_PLACE_DETAILS)) { //if it has this EXTRA_PLACE_DETAILS name then...
-            happyPlaceDetailModel = intent.getSerializableExtra(MainActivity.EXTRA_PLACE_DETAILS) as HappyPlaceModel
+            happyPlaceDetailModel = intent.getParcelableExtra(MainActivity.EXTRA_PLACE_DETAILS) as HappyPlaceModel?
         }
 
         if (happyPlaceDetailModel != null) {
