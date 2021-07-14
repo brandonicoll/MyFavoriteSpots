@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.item_happy_place.view.*
 open class HappyPlacesAdapter(private val context: Context, private var list: ArrayList<HappyPlaceModel>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var onClickListener : OnClickListener? = null //adapters cant have onclicklisteners so this must be done
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_happy_place, parent, false) //inflates the xml of the cardview
         )
@@ -33,4 +35,12 @@ open class HappyPlacesAdapter(private val context: Context, private var list: Ar
     }
 
     private class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    fun setOnClickListener(onClickListener: OnClickListener) { //adapters cant have onclicklisteners so this must be done
+        this.onClickListener = onClickListener
+    }
+
+    interface OnClickListener {
+        fun onClick(position: Int, model: HappyPlaceModel) //adapters cant have onclicklisteners so this must be done
+    }
 }
