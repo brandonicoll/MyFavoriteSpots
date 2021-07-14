@@ -22,6 +22,10 @@ class HappyPlaceDetailActivity : AppCompatActivity() {
             setSupportActionBar(toolbar_happy_place_details)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             supportActionBar!!.title = happyPlaceDetailModel.title //title of the recycler view element
+
+            toolbar_happy_place_details.setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
     }
 }
