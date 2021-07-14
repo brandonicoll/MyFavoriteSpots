@@ -11,4 +11,4 @@ data class HappyPlaceModel(
     val location: String,
     val latitude: Double,
     val longitude: Double
-) : Serializable //allows for passing the entiure object through an intent
+) : Serializable //allows for passing the entire object through an intent
