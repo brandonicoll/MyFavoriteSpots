@@ -42,7 +42,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1' //third party for circle image
     //debugImplementation ('im.dino:dbinspector:3.4.1@aar')
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    implementation 'com.google.android.libraries.places:places:2.1.0'
+    implementation 'com.google.android.libraries.places:places:2.4.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'

@@ -209,8 +209,8 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             et_location.setText(place.address)
             mLatitude = place.latLng!!.latitude
             mLongitude = place.latLng!!.longitude
-
         }
+        Log.d("MAPSCODE", "result code: ${result.resultCode}")
     }
 
     var resultLauncherGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
