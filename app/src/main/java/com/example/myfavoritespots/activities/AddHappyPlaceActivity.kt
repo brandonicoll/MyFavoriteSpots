@@ -21,6 +21,9 @@ import com.example.myfavoritespots.R
 import com.example.myfavoritespots.database.DatabaseHandler
 import com.example.myfavoritespots.models.HappyPlaceModel
 import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -182,12 +185,31 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             R.id.et_location -> {
                 try {
 
+                    // These are the list of fields which we required is passed
+                    val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS)
+                    // Start the autocomplete intent with a unique request code.
+                    val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(this@AddHappyPlaceActivity)
+                    resultLauncherLocation.launch(intent)
+
                 }
                 catch (e: Exception) {
                     e.printStackTrace()
                 }
 
             }
+        }
+    }
+
+    var resultLauncherLocation = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // There are no request codes
+            val data: Intent? = result.data
+
+            val place: Place = Autocomplete.getPlaceFromIntent(data!!)
+            et_location.setText(place.address)
+            mLatitude = place.latLng!!.latitude
+            mLongitude = place.latLng!!.longitude
+
         }
     }
 
@@ -305,7 +327,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         private const val IMAGE_DIRECTORY = "HappyPlacesImages"
-        private const val PLACE_AUTOCOMPLETE_REQUEST_CODE = 3
+        //private const val PLACE_AUTOCOMPLETE_REQUEST_CODE = 3
     }
 
 }
