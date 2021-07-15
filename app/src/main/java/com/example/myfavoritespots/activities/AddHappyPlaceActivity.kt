@@ -31,6 +31,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -91,6 +92,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         et_date.setOnClickListener(this) //the click is handled in the onclick fun
         tv_add_image.setOnClickListener(this)
         btn_save.setOnClickListener(this)
+        et_location.setOnClickListener(this)
 
     }
 
@@ -176,6 +178,15 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
                     }
                 }
+            }
+            R.id.et_location -> {
+                try {
+
+                }
+                catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
             }
         }
     }
@@ -294,6 +305,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         private const val IMAGE_DIRECTORY = "HappyPlacesImages"
+        private const val PLACE_AUTOCOMPLETE_REQUEST_CODE = 3
     }
 
 }
