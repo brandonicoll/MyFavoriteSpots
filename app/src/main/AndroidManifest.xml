@@ -22,7 +22,8 @@
             android:label="ADD HAPPY PLACE"
             android:screenOrientation="portrait"
             android:theme="@style/CustomNoActionBarTheme" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
