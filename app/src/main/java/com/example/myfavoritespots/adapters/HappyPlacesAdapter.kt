@@ -1,12 +1,16 @@
 package com.example.myfavoritespots.adapters
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfavoritespots.R
+import com.example.myfavoritespots.activities.AddHappyPlaceActivity
+import com.example.myfavoritespots.activities.MainActivity
 import com.example.myfavoritespots.models.HappyPlaceModel
 import kotlinx.android.synthetic.main.item_happy_place.view.*
 
@@ -48,5 +52,12 @@ open class HappyPlacesAdapter(private val context: Context, private var list: Ar
 
     interface OnClickListener {
         fun onClick(position: Int, model: HappyPlaceModel) //adapters cant have onclicklisteners so this must be done (override in main or wherever the recycler is)
+    }
+
+    fun notifyEditItem(activity: Activity, position: Int, requestCode: Int) { //for swipe
+        val intent = Intent(context, AddHappyPlaceActivity::class.java)
+        intent.putExtra(MainActivity.EXTRA_PLACE_DETAILS, list[position])
+        activity.startActivityForResult(intent, requestCode)
+        notifyItemChanged(position)
     }
 }
