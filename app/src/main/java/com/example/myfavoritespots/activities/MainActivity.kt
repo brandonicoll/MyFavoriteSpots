@@ -1,5 +1,6 @@
 package com.example.myfavoritespots.activities
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.example.myfavoritespots.utils.SwipeToDeleteCallback
 import com.example.myfavoritespots.utils.SwipeToEditCallback
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_custom_back_confirmation.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,10 +81,23 @@ class MainActivity : AppCompatActivity() {
         //for swipe to delete
         val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val adapter = rv_happy_places_list.adapter as HappyPlacesAdapter
-                adapter.removeAt(viewHolder.adapterPosition)
 
-                getHappyPlacesListFromLocalDatabase()
+                val customDialog = Dialog(this@MainActivity)
+
+                customDialog.setContentView(R.layout.dialog_custom_back_confirmation) //the custom dialog we just made - set the xml as the view of it
+                customDialog.tvYes.setOnClickListener {
+                    val adapter = rv_happy_places_list.adapter as HappyPlacesAdapter
+                    adapter.removeAt(viewHolder.adapterPosition)
+
+                    getHappyPlacesListFromLocalDatabase()
+                    customDialog.dismiss()
+                }
+                customDialog.tvNo.setOnClickListener {
+                    getHappyPlacesListFromLocalDatabase()
+                    customDialog.dismiss()
+                }
+                customDialog.show()
+
             }
         }
 
