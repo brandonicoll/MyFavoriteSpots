@@ -73,7 +73,7 @@
                 tools:text="Location" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bt_view_on_map"
+                android:id="@+id/btn_view_on_map"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
