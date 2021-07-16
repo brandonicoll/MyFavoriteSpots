@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.MyFavouriteSpots" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="android:statusBarColor">@color/darker_teal</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="colorPrimary">@color/teal_default</item>
+        <item name="colorPrimaryDark">@color/darker_teal</item>
+        <item name="colorAccent">@color/lightest_teal</item>
 
         <!-- Customize your theme here. -->
     </style>

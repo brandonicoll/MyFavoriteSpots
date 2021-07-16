@@ -2,6 +2,7 @@ package com.example.myfavoritespots.activities
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
