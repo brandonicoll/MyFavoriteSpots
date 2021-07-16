@@ -76,7 +76,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         if (mHappyPlaceDetails != null) {
-            supportActionBar?.title = "Edit Happy Place"
+            supportActionBar?.title = "Edit Spot"
 
             et_title.setText(mHappyPlaceDetails!!.title)
             et_description.setText(mHappyPlaceDetails!!.description)

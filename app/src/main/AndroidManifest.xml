@@ -37,12 +37,12 @@
 
         <activity
             android:name=".activities.HappyPlaceDetailActivity"
-            android:label="ADD HAPPY DETAILS"
+            android:label="ADD SPOT DETAILS"
             android:screenOrientation="portrait"
             android:theme="@style/CustomNoActionBarTheme" />
         <activity
             android:name=".activities.AddHappyPlaceActivity"
-            android:label="ADD HAPPY PLACE"
+            android:label="ADD SPOT"
             android:screenOrientation="portrait"
             android:theme="@style/CustomNoActionBarTheme" />
         <activity
