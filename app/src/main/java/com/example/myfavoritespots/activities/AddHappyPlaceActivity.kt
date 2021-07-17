@@ -279,6 +279,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             if (report!!.areAllPermissionsGranted()) {
 
+                                //if (et_location.text!!.isEmpty())
                                 requestNewLocationData()
                             }
                         }
@@ -287,6 +288,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }).onSameThread().check()
                 }
+                tv_select_current_location.setOnClickListener(null) //button can only be clicked once
             }
 
         }

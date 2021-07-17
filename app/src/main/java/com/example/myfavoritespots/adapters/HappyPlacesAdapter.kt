@@ -1,5 +1,6 @@
 package com.example.myfavoritespots.adapters
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -7,6 +8,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfavoritespots.R
 import com.example.myfavoritespots.activities.AddHappyPlaceActivity
@@ -25,8 +27,20 @@ open class HappyPlacesAdapter(private val context: Context, private var list: Ar
         )
     }
 
+    //@SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
+
+        /*
+
+        if (position % 2 == 0) {
+            holder.itemView.llCard.setCardBackgroundColor(R.color.teal_default)
+
+        } else {
+            holder.itemView.llCard.setCardBackgroundColor(R.color.darker_teal)
+        }
+
+         */
 
         if (holder is MyViewHolder) {
             holder.itemView.iv_place_image.setImageURI(Uri.parse(model.image))
@@ -71,4 +85,5 @@ open class HappyPlacesAdapter(private val context: Context, private var list: Ar
             notifyItemRemoved(position)
         }
     }
+
 }
