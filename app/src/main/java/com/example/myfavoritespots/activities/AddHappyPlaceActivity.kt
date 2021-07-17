@@ -24,6 +24,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.example.myfavoritespots.R
 import com.example.myfavoritespots.database.DatabaseHandler
 import com.example.myfavoritespots.models.HappyPlaceModel
+import com.example.myfavoritespots.utils.GetAddressFromLatLng
 import com.google.android.gms.location.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -35,6 +36,8 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -118,6 +121,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
+        progressBar1.visibility = View.VISIBLE
         var mLocationRequest = LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
             interval = 1000
@@ -133,8 +137,34 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             val mLastLocation : Location = locationResult!!.lastLocation
             mLatitude = mLastLocation.latitude
             mLongitude = mLastLocation.longitude
+
+            runBlocking {
+                val addressTask = GetAddressFromLatLng(this@AddHappyPlaceActivity, mLatitude, mLongitude)
+
+                /**
+                 *This async {} runs outside the normal program
+                 */
+                val address = async { addressTask.getAddress() }
+
+                /**
+                 * .await() waits for the variable to return from async.
+                 * Must use .await() on the variable
+                 */
+                if (address.await() != "") {
+                    et_location.setText(address.await())
+                } else {
+                    Toast.makeText(
+                        this@AddHappyPlaceActivity,
+                        "Error, Something Went Wrong",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+            progressBar1.visibility = View.GONE
+
         }
     }
+
 
     override fun onClick(v: View?) {
         when (v!!.id) {
@@ -248,11 +278,8 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                     ).withListener(object: MultiplePermissionsListener {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             if (report!!.areAllPermissionsGranted()) {
-                                Toast.makeText(
-                                    this@AddHappyPlaceActivity,
-                                    "Location permission is granted. Now you can request for a current location.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+
+                                requestNewLocationData()
                             }
                         }
                         override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
