@@ -5,9 +5,11 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
+import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -96,7 +98,14 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         tv_add_image.setOnClickListener(this)
         btn_save.setOnClickListener(this)
         et_location.setOnClickListener(this)
+        tv_select_current_location.setOnClickListener(this)
 
+    }
+
+    private fun isLocationEnabled() : Boolean {
+        val locationManager : LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
     override fun onClick(v: View?) {

@@ -131,7 +131,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:padding="@dimen/add_place_select_current_location_padding"
-                android:text="SELECT CURRENT LOCATION"
+                android:text="@string/select_current_location"
                 android:textColor="@color/lighter_teal"
                 android:textSize="@dimen/add_place_select_current_location_textsize"
                 app:layout_constraintEnd_toEndOf="parent"
