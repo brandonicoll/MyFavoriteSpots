@@ -11,7 +11,7 @@
         android:layout_marginStart="@dimen/item_happy_place_cv_main_marginStartEnd"
         android:layout_marginEnd="@dimen/item_happy_place_cv_main_marginStartEnd"
         android:background="@color/white_color"
-        app:cardBackgroundColor="#CCE7E5"
+        app:cardBackgroundColor="#BED0CF"
         app:cardCornerRadius="@dimen/item_happy_place_cv_corner_radius"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
