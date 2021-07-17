@@ -19,6 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFavouriteSpots">
         <activity
+            android:name=".activities.HelpActivity"
+            android:label="ABOUT THIS APP"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomNoActionBarTheme" />
+        <activity
             android:name=".activities.MapActivity"
             android:label="HAPPY PLACE MAP"
             android:screenOrientation="portrait"

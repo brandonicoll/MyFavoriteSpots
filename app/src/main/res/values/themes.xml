@@ -4,6 +4,7 @@
         <item name="colorPrimary">@color/teal_default</item>
         <item name="colorPrimaryDark">@color/darker_teal</item>
         <item name="colorAccent">@color/lightest_teal</item>
+        <item name="android:statusBarColor">@color/darker_teal</item>
 
         <!-- Customize your theme here. -->
     </style>

@@ -48,9 +48,10 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
 
         if (id == R.id.action_one) {
-            Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
+            val intent = Intent(this@MainActivity, HelpActivity::class.java)
+            startActivity(intent)
             return true
-
         }
         return super.onOptionsItemSelected(item)
     }
