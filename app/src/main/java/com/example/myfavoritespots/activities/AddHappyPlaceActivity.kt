@@ -39,6 +39,7 @@ import java.io.OutputStream
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.jar.Manifest
 
 class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     //by implemented the onclicklistener extension it requires an onlick fun instead of just doing it in the oncreate
@@ -206,6 +207,34 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
             }
+            R.id.tv_select_current_location -> {
+                if (!isLocationEnabled()) {
+                    Toast.makeText(this, "Location services are not enabled.", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    startActivity(intent)
+                }
+                else {
+                    Dexter.withContext(this).withPermissions(
+                        android.Manifest.permission.ACCESS_FINE_LOCATION,
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION
+                    ).withListener(object: MultiplePermissionsListener {
+                        override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                            if (report!!.areAllPermissionsGranted()) {
+                                Toast.makeText(
+                                    this@AddHappyPlaceActivity,
+                                    "Location permission is granted. Now you can request for a current location.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                        override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
+                            showRationalDialogForPermissions()
+                        }
+                    }).onSameThread().check()
+                }
+            }
+
         }
     }
 
