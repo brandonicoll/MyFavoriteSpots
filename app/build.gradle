@@ -37,6 +37,7 @@ dependencies {
     apply plugin : "kotlin-android"
     apply plugin : "kotlin-android-extensions"
     implementation('com.google.android.material:material:1.4.0')
+
     implementation 'com.karumi:dexter:6.2.3' //dexter library for permissions.
     implementation 'com.parse:parse-android:1.15.7'
     implementation 'de.hdodenhof:circleimageview:3.0.1' //third party for circle image
