@@ -68,6 +68,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         setSupportActionBar(toolbar_add_place)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar_add_place.setNavigationOnClickListener {
+            finish()
             onBackPressed()
         }
 
@@ -130,6 +131,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
         mFusedLocationClient.requestLocationUpdates(
             mLocationRequest, mLocationCallBack, Looper.myLooper())
+        //progressBar1.visibility = View.GONE
     }
 
     private val mLocationCallBack = object : LocationCallback() {
@@ -244,6 +246,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                                 finish();//finishing activity
                             }
                         }
+                        finish()
 
 
                     }
@@ -281,6 +284,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
                                 //if (et_location.text!!.isEmpty())
                                 requestNewLocationData()
+                                tv_select_current_location.setOnClickListener(null) //button can only be clicked once
                             }
                         }
                         override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
@@ -288,7 +292,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }).onSameThread().check()
                 }
-                tv_select_current_location.setOnClickListener(null) //button can only be clicked once
+
             }
 
         }

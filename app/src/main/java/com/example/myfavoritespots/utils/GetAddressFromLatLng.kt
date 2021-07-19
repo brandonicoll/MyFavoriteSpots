@@ -12,7 +12,7 @@ class GetAddressFromLatLng (context: Context, private val lat: Double, private v
 
     private val geocoder: Geocoder = Geocoder(context, Locale.getDefault())
 
-    suspend fun getAddress():String {
+    fun getAddress():String {
         try {
             val addressList: List<Address>? = geocoder.getFromLocation(lat, long, 1)
 
