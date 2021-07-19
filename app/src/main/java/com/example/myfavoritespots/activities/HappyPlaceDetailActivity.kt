@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.myfavoritespots.R
 import com.example.myfavoritespots.models.HappyPlaceModel
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_add_happy_place.*
 import kotlinx.android.synthetic.main.activity_happy_place_detail.*
@@ -16,6 +17,9 @@ class HappyPlaceDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_happy_place_detail)
 
         MobileAds.initialize(this@HappyPlaceDetailActivity)
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         var happyPlaceDetailModel : HappyPlaceModel? = null
 
