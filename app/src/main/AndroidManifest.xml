@@ -44,7 +44,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy"/>
+            android:value="@string/app_id_admob"/>
 
         <activity
             android:name=".activities.HappyPlaceDetailActivity"
