@@ -1,11 +1,11 @@
-package com.example.myfavoritespots.activities
+package ca.ispy.myfavoritespots.activities
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myfavoritespots.R
-import com.example.myfavoritespots.models.HappyPlaceModel
+import ca.ispy.myfavoritespots.R
+import ca.ispy.myfavoritespots.models.HappyPlaceModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_add_happy_place.*

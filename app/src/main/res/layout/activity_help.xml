@@ -7,7 +7,7 @@
     android:background="@drawable/grey"
     android:backgroundTint="#90FFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context=".activities.HelpActivity">
+    tools:context="ca.ispy.myfavoritespots.activities.HelpActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_help_activity"
@@ -48,9 +48,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/how_to_use_this_app"
-                android:textColor="#363A43"
+                android:textColor="@color/darker_teal"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/instructions"
+                android:textColor="#363A43"
+                android:textSize="13sp" />
 
         </LinearLayout>
 

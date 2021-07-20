@@ -1,9 +1,8 @@
-package com.example.myfavoritespots.activities
+package ca.ispy.myfavoritespots.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myfavoritespots.R
-import kotlinx.android.synthetic.main.activity_add_happy_place.*
+import ca.ispy.myfavoritespots.R
 import kotlinx.android.synthetic.main.activity_help.*
 
 class HelpActivity : AppCompatActivity() {

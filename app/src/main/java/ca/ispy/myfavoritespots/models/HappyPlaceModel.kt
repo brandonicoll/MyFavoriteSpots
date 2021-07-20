@@ -1,4 +1,4 @@
-package com.example.myfavoritespots.models
+package ca.ispy.myfavoritespots.models
 
 import android.os.Parcel
 import android.os.Parcelable

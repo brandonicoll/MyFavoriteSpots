@@ -1,4 +1,4 @@
-package com.example.myfavoritespots.activities
+package ca.ispy.myfavoritespots.activities
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -21,10 +21,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.myfavoritespots.R
-import com.example.myfavoritespots.database.DatabaseHandler
-import com.example.myfavoritespots.models.HappyPlaceModel
-import com.example.myfavoritespots.utils.GetAddressFromLatLng
+import ca.ispy.myfavoritespots.R
+import ca.ispy.myfavoritespots.database.DatabaseHandler
+import ca.ispy.myfavoritespots.models.HappyPlaceModel
+import ca.ispy.myfavoritespots.utils.GetAddressFromLatLng
 import com.google.android.gms.location.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -45,7 +45,6 @@ import java.io.OutputStream
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.jar.Manifest
 
 class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     //by implemented the onclicklistener extension it requires an onlick fun instead of just doing it in the oncreate

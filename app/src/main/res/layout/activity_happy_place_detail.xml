@@ -7,7 +7,7 @@
     android:background="@drawable/grey"
     android:backgroundTint="#90FFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context=".activities.HappyPlaceDetailActivity">
+    tools:context="ca.ispy.myfavoritespots.activities.HappyPlaceDetailActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_happy_place_details"

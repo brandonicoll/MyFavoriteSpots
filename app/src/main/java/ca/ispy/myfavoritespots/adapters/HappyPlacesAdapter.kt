@@ -1,6 +1,5 @@
-package com.example.myfavoritespots.adapters
+package ca.ispy.myfavoritespots.adapters
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -8,13 +7,12 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myfavoritespots.R
-import com.example.myfavoritespots.activities.AddHappyPlaceActivity
-import com.example.myfavoritespots.activities.MainActivity
-import com.example.myfavoritespots.database.DatabaseHandler
-import com.example.myfavoritespots.models.HappyPlaceModel
+import ca.ispy.myfavoritespots.R
+import ca.ispy.myfavoritespots.activities.AddHappyPlaceActivity
+import ca.ispy.myfavoritespots.activities.MainActivity
+import ca.ispy.myfavoritespots.database.DatabaseHandler
+import ca.ispy.myfavoritespots.models.HappyPlaceModel
 import kotlinx.android.synthetic.main.item_happy_place.view.*
 
 open class HappyPlacesAdapter(private val context: Context, private var list: ArrayList<HappyPlaceModel>)

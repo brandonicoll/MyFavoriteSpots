@@ -1,4 +1,4 @@
-package com.example.myfavoritespots.utils
+package ca.ispy.myfavoritespots.utils
 
 import android.content.Context
 import android.location.Address

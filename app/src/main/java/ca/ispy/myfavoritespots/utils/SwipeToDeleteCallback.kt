@@ -1,4 +1,4 @@
-package com.example.myfavoritespots.utils
+package ca.ispy.myfavoritespots.utils
 
 import android.content.Context
 import android.graphics.*
@@ -6,7 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myfavoritespots.R
+import ca.ispy.myfavoritespots.R
 
 // For detail explanation of this class you can look at below link.
 // https://medium.com/@kitek/recyclerview-swipe-to-delete-easier-than-you-thought-cff67ff5e5f6
