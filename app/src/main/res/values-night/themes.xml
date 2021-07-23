@@ -8,7 +8,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="CustomNoActionBarTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="CustomNoActionBarTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/teal_default</item>

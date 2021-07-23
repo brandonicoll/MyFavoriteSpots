@@ -48,8 +48,6 @@ import java.util.*
 
 class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
     //by implemented the onclicklistener extension it requires an onlick fun instead of just doing it in the oncreate
-    @SuppressLint("RestrictedApi")
-
     private val cal = Calendar.getInstance()
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener //dont have to initialize it now
     private var saveImageToInternalStorage : Uri? = null
@@ -87,6 +85,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateDateInView()
         }
+        updateDateInView()
 
         if (mHappyPlaceDetails != null) {
             supportActionBar?.title = "Edit Spot"
@@ -195,9 +194,6 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                     et_description.text.isNullOrEmpty() -> {
                         et_description.requestFocus()
                         Toast.makeText(this, "Please enter description", Toast.LENGTH_SHORT).show()
-                    }
-                    et_date.text.isNullOrEmpty() -> {
-                        Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show()
                     }
                     et_location.text.isNullOrEmpty() -> {
                         et_location.requestFocus()
