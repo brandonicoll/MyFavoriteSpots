@@ -224,7 +224,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                             if (addHappyPlace > 0) { //means there was no error and was actually inserted
                                 Toast.makeText(
                                     this,
-                                    "The happy place details are inserted successfully.",
+                                    "You have saved a fishing spot!",
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 finish();//finishing activity
@@ -235,7 +235,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                             if (updateHappyPlace > 0) { //means there was no error and was actually inserted
                                 Toast.makeText(
                                     this,
-                                    "The happy place details updated successfully.",
+                                    "Successfully updated fishing spot!",
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 finish();//finishing activity
