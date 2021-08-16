@@ -1,7 +1,10 @@
 package ca.ispy.myfavoritespots.activities
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //isDarkMode()
 
         fabAddHappyPlace.setOnClickListener{
             val intent = Intent(this@MainActivity, AddHappyPlaceActivity::class.java)
@@ -32,6 +36,20 @@ class MainActivity : AppCompatActivity() {
 
         getHappyPlacesListFromLocalDatabase()
 
+    }
+
+    fun isDarkMode() {
+        when (resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                frame_layout.setBackgroundResource(R.drawable.grey_darker)
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                frame_layout.setBackgroundResource(R.drawable.grey)
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                frame_layout.setBackgroundResource(R.drawable.grey)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

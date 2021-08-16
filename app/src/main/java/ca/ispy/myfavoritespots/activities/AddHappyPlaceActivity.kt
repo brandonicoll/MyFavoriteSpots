@@ -132,6 +132,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         //progressBar1.visibility = View.GONE
     }
 
+
     private val mLocationCallBack = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation : Location = locationResult!!.lastLocation
